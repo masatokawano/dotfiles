@@ -1,0 +1,14 @@
+[terminal.shell]
+program = "/bin/zsh"
+args = ["-l","-c","zellij attach --index 0 --create"]
+
+[font]
+normal = { family = "Hack Nerd Font", style = "Regular" }
+bold = { family = "Hack Nerd Font", style = "Bold" }
+italic = { family = "Hack Nerd Font", style = "Italic" }
+bold_italic = { family = "Hack Nerd Font", style = "Bold Italic" }
+size = 14.0
+offset = { x = 0, y = 2 }
+
+[terminal]
+
