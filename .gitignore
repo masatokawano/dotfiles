@@ -1,0 +1,78 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Backup files
+*.backup
+*.bak
+*~
+
+# Sensitive information
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+*.p12
+
+# Cache directories
+.cache/
+*.cache
+
+# Log files
+*.log
+logs/
+
+# Temporary files
+temp/
+tmp/
+*.tmp
+*.temp
+
+# Personal notes and drafts
+notes/
+drafts/
+TODO.md
+NOTES.md
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Compiled files
+*.o
+*.so
+*.dylib
+*.exe
+
+# Package files
+*.tar.gz
+*.zip
+*.rar
+
+# Local configuration overrides
+local_config/
+.local/

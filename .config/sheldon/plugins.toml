@@ -1,0 +1,79 @@
+# `sheldon` configuration file
+# ----------------------------
+#
+# You can modify this file directly or you can use one of the following
+# `sheldon` commands which are provided to assist in editing the config file:
+#
+# - `sheldon add` to add a new plugin to the config file
+# - `sheldon edit` to open up the config file in the default editor
+# - `sheldon remove` to remove a plugin from the config file
+#
+# See the documentation for more https://github.com/rossmacarthur/sheldon#readme
+
+shell = "zsh"
+apply = ["defer"]
+
+[plugins]
+
+# Essential plugins
+[plugins.zsh-defer]
+github = 'romkatv/zsh-defer'
+apply = ['source']
+
+[plugins.zsh-syntax-highlighting]
+github = 'zsh-users/zsh-syntax-highlighting'
+apply = ['defer']
+
+[plugins.compinit]
+inline = 'autoload -Uz compinit && zsh-defer compinit'
+
+# Prompt theme (loaded directly in .zshrc)
+
+# Development environment managers
+[plugins.asdf]
+github = "asdf-vm/asdf"
+
+[plugins.mise]
+inline = '''
+if command -v mise 1>/dev/null 2>&1; then
+   eval "$(mise activate zsh)"
+fi
+'''
+
+# Language environments
+[plugins.cargo]
+inline = 'source "$HOME/.cargo/env"'
+
+[plugins.ghcup]
+inline = '[ -f "/Users/masato/.ghcup/env" ] && . "/Users/masato/.ghcup/env"'
+
+# Directory navigation
+[plugins.enhancd]
+github = 'b4b4r07/enhancd'
+
+# Color theme
+[plugins.base16]
+github = "chriskempson/base16-shell"
+
+# System utilities
+[plugins.barrier-path]
+inline = 'export PATH=/Applications/Barrier.app/Contents/MacOS/:$PATH'
+
+# Aliases
+[plugins.nvim]
+inline = 'alias vim="nvim"'
+
+[plugins.ls-ll]
+inline = 'alias ll="ls -al"'
+
+[plugins.eza]
+inline = 'alias ls="eza --icons"'
+
+[plugins.awsp]
+inline = 'alias awsp="source _awsp"'
+
+# Templates
+[templates]
+defer = "{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}"
+fzf-install = "[[ ! -e {{ dir }}/bin/fzf ]] && {{ dir }}/install --bin\nexport PATH=\"{{ dir }}/bin:$PATH\""
+fzf-source = "{% for file in files %}source \"{{ file }}\"\n{% endfor %}"
