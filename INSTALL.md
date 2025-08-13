@@ -157,6 +157,34 @@ brew install --cask font-meslo-lg-nerd-font
 p10k configure
 ```
 
+## オプション設定
+
+### Homebrew自動更新の設定
+毎朝8時にHomebrew を自動更新するように設定できます：
+
+```bash
+# launchdを使用した自動更新（推奨）
+~/dotfiles/scripts/setup-brew-auto-update.sh
+
+# または、シェル起動時の更新（軽量版）
+echo 'source ~/dotfiles/scripts/brew-update-on-shell-start.sh' >> ~/.zshrc
+```
+
+**管理コマンド:**
+```bash
+# 停止
+launchctl unload ~/Library/LaunchAgents/com.user.brew-daily-update.plist
+
+# 開始  
+launchctl load ~/Library/LaunchAgents/com.user.brew-daily-update.plist
+
+# 手動実行
+~/dotfiles/scripts/brew-daily-update.sh
+
+# ログ確認
+tail -f ~/.local/share/logs/brew-update.log
+```
+
 ## トラブルシューティング
 
 ### 権限エラー
