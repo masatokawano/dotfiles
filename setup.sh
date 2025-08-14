@@ -42,7 +42,22 @@ fi
 
 log_info "Starting dotfiles setup..."
 
-# 1. Install Homebrew if not present
+# 1. Install Xcode Command Line Tools if not present
+if ! xcode-select -p >/dev/null 2>&1; then
+    log_info "Installing Xcode Command Line Tools..."
+    xcode-select --install
+    
+    # Wait for installation to complete
+    log_info "Waiting for Xcode Command Line Tools installation to complete..."
+    until xcode-select -p >/dev/null 2>&1; do
+        sleep 5
+    done
+    log_success "Xcode Command Line Tools installed"
+else
+    log_success "Xcode Command Line Tools already installed"
+fi
+
+# 2. Install Homebrew if not present
 if ! command_exists brew; then
     log_info "Installing Homebrew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -60,7 +75,7 @@ fi
 log_info "Updating Homebrew..."
 brew update
 
-# 2. Install essential applications
+# 3. Install essential applications
 log_info "Installing essential applications..."
 
 # Terminal and editors
@@ -82,7 +97,7 @@ brew install --cask font-meslo-lg-nerd-font || log_warning "Failed to install Ne
 
 log_success "Essential applications installed"
 
-# 3. Install Powerlevel10k
+# 4. Install Powerlevel10k
 if [ ! -d ~/powerlevel10k ]; then
     log_info "Installing Powerlevel10k theme..."
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
@@ -91,7 +106,7 @@ else
     log_success "Powerlevel10k already installed"
 fi
 
-# 4. Backup existing config files
+# 5. Backup existing config files
 log_info "Backing up existing configuration files..."
 backup_dir="$HOME/.config/dotfiles-backup-$(date +%Y%m%d-%H%M%S)"
 mkdir -p "$backup_dir"
@@ -115,7 +130,7 @@ for dir in "${config_dirs[@]}"; do
     fi
 done
 
-# 5. Create symbolic links
+# 6. Create symbolic links
 log_info "Creating symbolic links..."
 
 # Get the directory where this script is located
@@ -151,7 +166,7 @@ if [ -f "$DOTFILES_DIR/zsh/p10k.zsh" ]; then
     log_success "Linked p10k.zsh"
 fi
 
-# 6. Install optional tools
+# 7. Install optional tools
 read -p "Install Rust (rustup)? [y/N]: " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
@@ -177,7 +192,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     log_success "asdf installed"
 fi
 
-# 7. Set up GitHub CLI
+# 8. Set up GitHub CLI
 if command_exists gh; then
     log_info "Setting up GitHub CLI..."
     echo "Please run 'gh auth login' after setup completes"
@@ -189,7 +204,7 @@ if command_exists gh; then
     fi
 fi
 
-# 8. Final steps
+# 9. Final steps
 log_success "Setup complete!"
 echo
 log_info "Next steps:"

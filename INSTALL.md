@@ -88,12 +88,17 @@
 
 ## インストール手順
 
-### 1. Homebrewをインストール
+### 1. Xcode Command Line Toolsをインストール
+```bash
+xcode-select --install
+```
+
+### 2. Homebrewをインストール
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-### 2. 必須アプリケーションをインストール
+### 3. 必須アプリケーションをインストール
 ```bash
 # ターミナル・エディタ
 brew install --cask alacritty
@@ -112,20 +117,20 @@ brew install eza
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
 ```
 
-### 3. dotfilesをクローン・適用
+### 4. dotfilesをクローン・適用
 ```bash
 git clone <your-dotfiles-repo> ~/dotfiles
 cd ~/dotfiles
 ./install.sh
 ```
 
-### 4. GitHub認証設定
+### 5. GitHub認証設定
 ```bash
 gh auth login
 gh extension install github/gh-copilot
 ```
 
-### 5. 言語環境セットアップ（必要に応じて）
+### 6. 言語環境セットアップ（必要に応じて）
 ```bash
 # Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -137,7 +142,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
 brew install asdf
 ```
 
-### 6. シェルをリロード
+### 7. シェルをリロード
 ```bash
 exec zsh
 ```
