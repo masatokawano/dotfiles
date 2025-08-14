@@ -92,7 +92,8 @@ brew install sheldon || log_warning "Failed to install sheldon"
 brew install eza || log_warning "Failed to install eza"
 
 # Fonts for better terminal experience (no longer need to tap homebrew/cask-fonts)
-brew install --cask font-meslo-lg-nerd-font || log_warning "Failed to install Nerd Font"
+brew install --cask font-meslo-lg-nerd-font || log_warning "Failed to install Meslo Nerd Font"
+brew install --cask font-hack-nerd-font || log_warning "Failed to install Hack Nerd Font"
 
 log_success "Essential applications installed"
 
@@ -165,15 +166,17 @@ if [ -f "$DOTFILES_DIR/zsh/p10k.zsh" ]; then
     log_success "Linked p10k.zsh"
 fi
 
-# 7. Install optional tools
-read -p "Install Rust (rustup)? [y/N]: " -n 1 -r
-echo
-if [[ $REPLY =~ ^[Yy]$ ]]; then
+# 7. Install Rust (required for proper .zshenv functionality)
+if ! command_exists rustc; then
     log_info "Installing Rust..."
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
     source ~/.cargo/env
     log_success "Rust installed"
+else
+    log_success "Rust already installed"
 fi
+
+# 8. Install other optional tools
 
 read -p "Install Haskell (GHCup)? [y/N]: " -n 1 -r
 echo
@@ -191,7 +194,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     log_success "asdf installed"
 fi
 
-# 8. Set up GitHub CLI
+# 9. Set up GitHub CLI
 if command_exists gh; then
     log_info "Setting up GitHub CLI..."
     echo "Please run 'gh auth login' after setup completes"
@@ -203,7 +206,7 @@ if command_exists gh; then
     fi
 fi
 
-# 9. Final steps
+# 10. Final steps
 log_success "Setup complete!"
 echo
 log_info "Next steps:"

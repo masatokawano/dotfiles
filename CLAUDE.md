@@ -105,12 +105,12 @@ rm -rf ~/.cache/sheldon.zsh && exec zsh
 - **Terminal**: alacritty, zellij
 - **Editors**: neovim, zed, neovide  
 - **CLI Tools**: sheldon (plugin manager), eza (enhanced ls), mise (environment manager), gh (GitHub CLI)
-- **Fonts**: Nerd Font (Meslo LG) for proper icon rendering (installed directly without homebrew/cask-fonts tap)
+- **Fonts**: Nerd Fonts (Meslo LG, Hack) for proper icon rendering (installed directly without homebrew/cask-fonts tap)
 
-### Optional Language Environments
-- **Rust** - Via rustup (cargo environment)
-- **Haskell** - Via GHCup  
-- **Node.js/Python** - Via mise or asdf version managers
+### Language Environments
+- **Rust** - Installed automatically via rustup (required for .zshenv)
+- **Haskell** - Optional, installed via GHCup (interactive prompt)
+- **Node.js/Python** - Optional, installed via mise or asdf (interactive prompt)
 
 ## Configuration Customization
 

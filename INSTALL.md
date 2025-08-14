@@ -154,6 +154,7 @@ Neovim/Alacrittyでアイコンを正しく表示するために、Nerd Fontを�
 ```bash
 # homebrew/cask-fontsのtapは不要になりました（2024年5月に統合）
 brew install --cask font-meslo-lg-nerd-font
+brew install --cask font-hack-nerd-font
 ```
 
 ### Powerlevel10kの設定
