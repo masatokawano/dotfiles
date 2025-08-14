@@ -91,8 +91,7 @@ brew install gh || log_warning "Failed to install gh"
 brew install sheldon || log_warning "Failed to install sheldon"
 brew install eza || log_warning "Failed to install eza"
 
-# Fonts for better terminal experience
-brew tap homebrew/cask-fonts
+# Fonts for better terminal experience (no longer need to tap homebrew/cask-fonts)
 brew install --cask font-meslo-lg-nerd-font || log_warning "Failed to install Nerd Font"
 
 log_success "Essential applications installed"

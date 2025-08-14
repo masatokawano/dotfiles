@@ -152,7 +152,7 @@ exec zsh
 ### フォント設定
 Neovim/Alacrittyでアイコンを正しく表示するために、Nerd Fontをインストールしてください：
 ```bash
-brew tap homebrew/cask-fonts
+# homebrew/cask-fontsのtapは不要になりました（2024年5月に統合）
 brew install --cask font-meslo-lg-nerd-font
 ```
 
