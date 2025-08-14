@@ -142,7 +142,10 @@ mkdir -p ~/.config
 # Link config directories
 for dir in alacritty gh git github-copilot mise neovide NvChad nvim zed zellij sheldon; do
     if [ -d "$DOTFILES_DIR/.config/$dir" ]; then
-        ln -sf "$DOTFILES_DIR/.config/$dir" ~/.config/
+        # Remove existing directory or symlink
+        rm -rf ~/.config/$dir
+        # Create symlink to the specific directory
+        ln -sf "$DOTFILES_DIR/.config/$dir" ~/.config/$dir
         log_success "Linked .config/$dir"
     fi
 done
